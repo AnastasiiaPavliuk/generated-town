@@ -13,9 +13,6 @@ const Bar = ({ data, width, color }) => {
     setHeight(height => height - 10);
   };
 
-  const changeColor = (e) => {
-    setColor(e.target.id);
-  }
 
 
  return (
@@ -42,13 +39,6 @@ const Bar = ({ data, width, color }) => {
 
       <button onClick={handleIncrement} disabled={height >= 200}> {height}+</button>
       <button onClick={handleDecrement} disabled={height <= 20}>-</button>
-
-      <div className="color-picker-container">
-        <button  onClick={changeColor} className="color-picker" style={{ backgroundColor: 'skyblue' }}  id="skyblue"></button>
-        <button onClick={changeColor} className="color-picker" style={{ backgroundColor: 'blue' }} id="blue"></button>
-        <button onClick={changeColor} className="color-picker" style={{ backgroundColor: 'green' }} id="green"></button>
-        <button onClick={changeColor} className="color-picker" style={{ backgroundColor: 'aqua' }} id="aqua"></button>
-      </div>
 
     </div>
 );

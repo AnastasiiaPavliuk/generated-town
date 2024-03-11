@@ -94,8 +94,6 @@ a {
   color: inherit;
 }
 
-
-
 /* Preserve default button styles */
 button {
   padding: 0;
@@ -107,6 +105,14 @@ button {
   cursor: pointer;
 }
 
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
 
 body {
   background-color: rgb(24, 15, 41);
@@ -149,4 +155,8 @@ button {
   margin: auto;
   margin-top: 2rem;
   padding: 1rem;
+  border-bottom: 4px solid aqua;
+
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.3) 10%, transparent 70%);
+
 }
