@@ -4,10 +4,23 @@ import Controller from "./Controller";
 
 const Bar = ({ width, height, color }) => {
   const [isControllerVisible, setControllerVisible] = useState(false);
+ const [heightUpd, setCurrentHeight] = useState(height);
 
-  const test = () => {
-    console.log("+");
+
+  // function increment and decrement value
+  const incrementHeight = () => {
+    console.log("increment");
+    setCurrentHeight(prevHeight => prevHeight + 20);
+  };
+
+  const decrementHeight = () => {
+    console.log("decrement");
+    setCurrentHeight(prevHeight => prevHeight - 20);
   }
+
+
+
+
 
   const toggleControllerVisibility = () => {
     setControllerVisible(!isControllerVisible);
@@ -26,8 +39,8 @@ const Bar = ({ width, height, color }) => {
         <g onClick={toggleControllerVisibility} className="building">
           <rect
             x={0}
-            y={250 - height}
-            height={height}
+            y={250 - heightUpd}
+            height={heightUpd}
             width={width}
             fill="transparent"
             border={color}
@@ -35,7 +48,7 @@ const Bar = ({ width, height, color }) => {
             strokeWidth="2"
           />
           <polygon
-            points={`0,${250 - height} ${width / 2},${200 - height} ${width},${250 - height}`}
+            points={`0,${250 - heightUpd} ${width / 2},${200 - heightUpd} ${width},${250 - heightUpd}`}
             fill="transparent"
             border={color}
             stroke={color}
@@ -44,7 +57,7 @@ const Bar = ({ width, height, color }) => {
         </g>
       </svg>
 
-      {isControllerVisible && <Controller height={height} onIncrement={test} onDecrement={test}/>}
+      {isControllerVisible && <Controller height={heightUpd} onIncrement={incrementHeight} onDecrement={decrementHeight}/>}
     </div>
   );
 };

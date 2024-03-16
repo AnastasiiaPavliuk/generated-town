@@ -10,7 +10,15 @@ import Bar from "./components/Bar";
 
 function App() {
 
-  const random = Math.floor(Math.random() * 120) + 60;
+  let random;
+  random = Math.floor(Math.random() * 120) + 60;
+
+  const randomize = () => {
+    window.location.reload();
+    // random = Math.floor(Math.random() * 140) + 60;
+    // console.log(random);
+  };
+
 
   const buildings = [
     {
@@ -43,7 +51,7 @@ function App() {
   return (
     <div className="app">
       <h1>Generate your town!</h1>
-      <button>randomize</button>
+      <button onClick={randomize}>randomize</button>
         {/* <ColorButtons color = {colorsArray[0]} /> */}
       <div className="city-cont">
         {buildings.map((building) => (
