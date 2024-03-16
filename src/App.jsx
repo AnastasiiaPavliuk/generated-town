@@ -1,52 +1,65 @@
 import "./App.css";
-import "./ColorButtons";
-import Bar from "./Bar";
-import ColorButtons from "./ColorButtons";
+import Bar from "./components/Bar";
 
-const random = Math.floor(Math.random() * 120) + 60;
+// import ColorButtons from "./ColorButtons";
+// import IncrementButton from "./IncrementButton";
+// import DecrementButton from "./DecrementButton";
+
+
+//  const [newcolor, setColor] = useState(color);
 
 function App() {
+
+  const random = Math.floor(Math.random() * 120) + 60;
+
   const buildings = [
     {
       id: 1,
       height: random - 40,
-      color: 'skyblue',
       windows: false
     },
     {
       id: 2,
       height: random,
-      color: 'skyblue',
       windows: true
     },
     {
       id: 3,
       height: random - 20,
-      color: 'skyblue',
+      windows: true
+    }
+
+    ,{
+      id: 4,
+      height: random - 20,
       windows: true
     }
   ];
+
   const width = 70;
+
+  // const colorsArray = [ "skyblue"];
 
   return (
     <div className="app">
       <h1>Generate your town!</h1>
       <button>randomize</button>
+        {/* <ColorButtons color = {colorsArray[0]} /> */}
       <div className="city-cont">
-        {buildings.map((building, index) => (
+        {buildings.map((building) => (
           <Bar
             key={building.id}
-            height={building.height}
-            data={building}
-            index={index}
+            // buildingsdata={building}
             width={width}
-            color={building.color}
+            height={building.height}
+            color={"skyblue"}
+
             // windows={building.windows}
           />
         ))}
 
       </div>
-        <ColorButtons />
+
     </div>
   );
 }

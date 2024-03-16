@@ -1,8 +1,9 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
 // import PropTypes from "prop-types";
 
-const ColorButtons = () => {
-  // const [currentColor, setCurrentColor] = useState(initialColor);
+const ColorButtons = ({color }) => {
+  const [currentColor, setCurrentColor] = useState(initialColor);
+  // const [height, setHeight] = useState(data.height);
 
   const changeColor = (e) => {
     console.log(e.target.id);
