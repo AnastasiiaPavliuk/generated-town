@@ -2,25 +2,27 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Controller from "./Controller";
 
-const Bar = ({ width, height, color }) => {
+const Bar = ({ barId_key, width, height, color, windows, onDelete }) => {
   const [isControllerVisible, setControllerVisible] = useState(false);
- const [heightUpd, setCurrentHeight] = useState(height);
+  const [heightUpd, setCurrentHeight] = useState(height);
+  const barId = barId_key;
 
-
-  // function increment and decrement value
   const incrementHeight = () => {
-    console.log("increment");
     setCurrentHeight(prevHeight => prevHeight + 20);
   };
 
   const decrementHeight = () => {
-    console.log("decrement");
     setCurrentHeight(prevHeight => prevHeight - 20);
-  }
+  };
 
   const toggleControllerVisibility = () => {
-    setControllerVisible(!isControllerVisible);
+    setControllerVisible(prevState => !prevState);
+
+
   };
+
+  let windowHeight;
+  windowHeight = heightUpd / 7;
 
   return (
     <div
@@ -29,7 +31,6 @@ const Bar = ({ width, height, color }) => {
         display: 'flex',
         flexDirection: 'column'
       }}
-       // Handle click event to toggle controller visibility
     >
       <svg width="100" height="250">
         <g onClick={toggleControllerVisibility} className="building">
@@ -43,8 +44,28 @@ const Bar = ({ width, height, color }) => {
             stroke={color}
             strokeWidth="4"
           />
+
+          {windows && (
+            <>
+              <rect
+                x={10}
+                y={250 - heightUpd + 10}
+                height={windowHeight}
+                width={width - 50}
+                fill={color}
+              />
+              <rect
+                x={10}
+                y={250 - heightUpd + windowHeight + heightUpd / 5 }
+                height={windowHeight}
+                width={width - 50}
+                fill={color}
+              />
+            </>
+          )}
+
           <polygon
-            points={`0,${250 - heightUpd} ${width / 2},${200 - heightUpd} ${width},${250 - heightUpd}`}
+            points={`0,${250 - heightUpd} ${width / 3.5},${230 - heightUpd} ${width / 1.5},${230 - heightUpd}  ${width},${250 - heightUpd}`}
             fill="transparent"
             border={color}
             stroke={color}
@@ -53,15 +74,18 @@ const Bar = ({ width, height, color }) => {
         </g>
       </svg>
 
-      {isControllerVisible && <Controller height={heightUpd} onIncrement={incrementHeight} onDecrement={decrementHeight}/>}
+      {isControllerVisible && <Controller height={heightUpd} barId={barId} onIncrement={incrementHeight} onDecrement={decrementHeight} onDelete={onDelete} onHideControls={toggleControllerVisibility}/>}
     </div>
   );
 };
 
 Bar.propTypes = {
+  barId_key: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
-  color: PropTypes.string.isRequired
+  color: PropTypes.string.isRequired,
+  windows: PropTypes.bool.isRequired,
+  onDelete: PropTypes.func.isRequired
 };
 
 export default Bar;

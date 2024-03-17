@@ -88,13 +88,11 @@ video {
   vertical-align: baseline;
 }
 
-/* Preserve default link styles */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Preserve default button styles */
 button {
   margin: .3rem;
   border: none;
@@ -104,6 +102,16 @@ button {
   cursor: pointer;
   padding: .3rem;
 
+}
+
+.heading {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 200;
+  color: white;
+  text-transform: capitalize;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.584);
+  padding: 0 .7rem;
 }
 
 
@@ -119,6 +127,7 @@ body {
   background-color: rgb(24, 15, 41);
   margin: 4rem;
   color: white;
+  font-family: Helvetica, sans-serif;
 }
 
 .color-picker-container {
@@ -147,6 +156,12 @@ button {
   margin: .2rem;
 }
 
+button:disabled {
+  color: gray;
+  border-color: gray;
+  cursor: default
+}
+
 .city-cont {
   position: relative;
   width: fit-content;
@@ -156,23 +171,14 @@ button {
   /* gap: 2rem; */
   margin: auto;
   margin-top: 2rem;
-  padding: 1rem;
+  padding: 1rem 3rem;
   padding-bottom: 0;
   border-bottom: 4px solid;
   border-color: aqua;
 
-  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.3) 10%, transparent 100%);
+  background-image: radial-gradient(rgba(203, 195, 239, 0.256) 5%, rgba(203, 195, 239, 0.143) 30%, rgba(255, 255, 255, 0) 70%);
 
 }
-
-/* .material-symbols-rounded {
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 300,
-    'GRAD' 0,
-    'opsz' 40
-} */
-
 .controller-cont {
   position: absolute;
   display: flex;
@@ -187,5 +193,23 @@ button {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
 
+.color-slider {
+  margin: 0 .75rem;
+}
+
+.arrow {
+  position: absolute;
+  top: 0;
+  left: -35px;
+}
+
+.arrow-img {
+  height: 100px;
+}
+
+.icon-img {
+  height: 20px;
+  padding: 5px;
 }
