@@ -96,13 +96,14 @@ a {
 
 /* Preserve default button styles */
 button {
-  padding: 0;
-  margin: 0;
+  margin: .3rem;
   border: none;
   background: none;
   font: inherit;
   color: inherit;
   cursor: pointer;
+  padding: .3rem;
+
 }
 
 
@@ -160,7 +161,7 @@ button {
   border-bottom: 4px solid;
   border-color: aqua;
 
-  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.3) 10%, transparent 70%);
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.3) 10%, transparent 100%);
 
 }
 
@@ -180,4 +181,11 @@ button {
   margin-top: 2rem;
   max-width: 100px;
   top: 250px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
 }
