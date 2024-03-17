@@ -1,50 +1,57 @@
 import "./App.css";
-import Bar from "./Bar";
-
-const random = Math.floor(Math.random() * 120) + 60;
-
-
+import { useState } from "react";
+import Bar from "./components/Bar";
+import ColorSlider from "./components/ColorSlider";
 
 function App() {
-const buildings = [
-  {
-    id: 1,
-    height: random -40 ,
-    color: 'skyblue',
-    windows: false
-  },
-  {
-    id: 2,
-    height: random ,
-    color: 'skyblue',
-    windows: true
-  },
-  {
-    id: 3,
-    height: random - 20,
-    color: 'skyblue',
-    windows: true
-  }
-];
-  const width = 70
+  const [color, setColor] = useState(Math.floor(Math.random() * (210 - 160 + 1)) + 160);
+
+  const handleSliderChange = (event) => {
+    setColor(parseInt(event.target.value));
+  };
+
+  const [buildings, setBuildings] = useState([
+    { id: 1, height: Math.floor(Math.random() * 120) + 60, windows: Math.random() > 0.5 ? false : true },
+    { id: 2, height: Math.floor(Math.random() * 120) + 60, windows: Math.random() > 0.5 ? false : true },
+    { id: 3, height: Math.floor(Math.random() * 120) + 60, windows: Math.random() > 0.5 ? false : true },
+    { id: 4, height: Math.floor(Math.random() * 120) + 60, windows: Math.random() > 0.5 ? false : true }
+  ]);
+
+  const addBuilding = () => {
+    const lastId = buildings.length > 0 ? buildings[buildings.length - 1].id : 0;
+    const newBuilding = {
+      id: lastId + 1,
+      height: Math.floor(Math.random() * 120) + 60,
+      windows: Math.random() > 0.5 ? false : true
+    };
+    setBuildings([...buildings, newBuilding]);
+  };
+
+  const deleteBuilding = (barId) => {
+    setBuildings(buildings.filter(building => building.id !== barId));
+  };
 
   return (
-    <div className="App">
-      <h1>Generate your town!</h1>
-      <button>randomize </button>
-        <div className="city-cont" >
-        {buildings.map((building, index) => (
-          <Bar
-            key={building.id}
-            height={building.height}
-            data={building}
-            index={index}
-            width={width}
-            color={building.color}
-            // windows={building.windows}
-          />
+    <div className="app">
+      <h1 className="heading">Generate your town!</h1>
+      <ColorSlider color={color} handleSliderChange={handleSliderChange}/>
+      <div className="flex-row">
+        <div className="city-cont" style={{ gap: '2px', borderColor: `hsl(${color}, 100%, 50%)` }}>
+        <div className="arrow"><img className="arrow-img" src="./click-on-arrow.png" alt="click on a building" /></div>
+          {buildings.map((building) => (
+            <Bar
+              key={building.id}
+              barId_key={building.id}
+              width={70}
+              height={building.height}
+              color={`hsl(${color}, 70%, 50%)`}
+              windows={building.windows}
+              onDelete={() => deleteBuilding(building.id)}
+            />
           ))}
-         </div>
+        </div>
+        <button onClick={addBuilding}>+</button>
+      </div>
     </div>
   );
 }
