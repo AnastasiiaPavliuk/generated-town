@@ -6,7 +6,7 @@ const Controller = ({height, onIncrement, onDecrement}) => {
     <div className="controller-cont">
       <button onClick={onIncrement} >  {height}+</button>
       <button onClick = {onDecrement}> {height}-</button>
-      <button>bin</button>
+      <button> <img src="../bin-icon.png" alt="delete" /></button>
     </div>
   );
 }

@@ -1,12 +1,7 @@
 import "./App.css";
+import { useState } from "react";
 import Bar from "./components/Bar";
-
-// import ColorButtons from "./ColorButtons";
-// import IncrementButton from "./IncrementButton";
-// import DecrementButton from "./DecrementButton";
-
-
-//  const [newcolor, setColor] = useState(color);
+import ColorSlider from "./components/ColorSlider";
 
 function App() {
 
@@ -18,6 +13,13 @@ function App() {
     // random = Math.floor(Math.random() * 140) + 60;
     // console.log(random);
   };
+
+   const [color, setColor] = useState(160);
+
+   const handleSliderChange = (event) => {
+    setColor(parseInt(event.target.value)); // Update color with slider value
+  };
+
 
 
   const buildings = [
@@ -39,34 +41,33 @@ function App() {
 
     ,{
       id: 4,
-      height: random - 20,
+      height: random - 10,
       windows: true
     }
   ];
 
   const width = 70;
 
-  // const colorsArray = [ "skyblue"];
 
   return (
     <div className="app">
       <h1>Generate your town!</h1>
       <button onClick={randomize}>randomize</button>
-        {/* <ColorButtons color = {colorsArray[0]} /> */}
-      <div className="city-cont">
+
+        <ColorSlider color={color} handleSliderChange={handleSliderChange}/>
+
+      <div className="city-cont" style={{ gap: '2px', borderColor: `hsl(${color}, 100%, 50%)`, }}>
         {buildings.map((building) => (
           <Bar
             key={building.id}
-            // buildingsdata={building}
             width={width}
             height={building.height}
-            color={"skyblue"}
-
+            color={`hsl(${color}, 70%, 50%)`}
             // windows={building.windows}
           />
         ))}
-
       </div>
+      <button style={{ height: "40px" }}>Add Building</button>
 
     </div>
   );

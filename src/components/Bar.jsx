@@ -18,10 +18,6 @@ const Bar = ({ width, height, color }) => {
     setCurrentHeight(prevHeight => prevHeight - 20);
   }
 
-
-
-
-
   const toggleControllerVisibility = () => {
     setControllerVisible(!isControllerVisible);
   };
@@ -45,14 +41,14 @@ const Bar = ({ width, height, color }) => {
             fill="transparent"
             border={color}
             stroke={color}
-            strokeWidth="2"
+            strokeWidth="4"
           />
           <polygon
             points={`0,${250 - heightUpd} ${width / 2},${200 - heightUpd} ${width},${250 - heightUpd}`}
             fill="transparent"
             border={color}
             stroke={color}
-            strokeWidth="2"
+            strokeWidth="3"
           />
         </g>
       </svg>
